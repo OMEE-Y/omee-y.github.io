@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Om Yewale</title>
+    <meta name="description" content="Portfolio of Om Yewale, an IT Engineering student specializing in high-performance Java backends, TypeScript systems, and concurrent architectures.">
+    <meta name="keywords" content="Om Yewale, Software Engineer, Java 21, TypeScript, Virtual Threads, Next.js, Backend Engineer, Concurrent Systems">
+    <meta name="author" content="Om Yewale">
+    <meta property="og:title" content="Om Yewale">
+    <meta property="og:description" content="Building core backends, tooling, and concurrent applications using Java and TypeScript.">
+    <meta property="og:type" content="website">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #000000;
+            --fg: #ffffff;
+            --muted: #666666;
+            --accent: #a78bfa; 
+            --accent-dim: rgba(167, 139, 250, 0.08);
+            --border: #222222;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --fg: #000000;
+            --muted: #888888;
+            --accent: #6d28d9;
+            --accent-dim: rgba(109, 40, 217, 0.05);
+            --border: #ececec;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 6rem 2rem;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Divider Rule Styling */
+        hr {
+            border: 0;
+            border-top: 1px solid var(--border);
+            margin: 4rem 0;
+        }
+
+        /* Header Setup */
+        header {
+            margin-bottom: 4rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--fg);
+        }
+
+        .theme-toggle .lucide-moon { display: block; }
+        .theme-toggle .lucide-sun { display: none; }
+        [data-theme="light"] .theme-toggle .lucide-moon { display: none; }
+        [data-theme="light"] .theme-toggle .lucide-sun { display: block; }
+
+        .bio-list {
+            list-style-type: none;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .bio-list strong {
+            color: var(--fg);
+            font-weight: 500;
+            background: var(--accent-dim);
+            padding: 0 2px;
+        }
+
+        nav a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            margin-right: 1.5rem;
+        }
+
+        nav a:hover {
+            color: var(--fg);
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .item-title {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--fg);
+        }
+
+        .item-title:hover {
+            text-decoration: underline;
+        }
+
+        .item-meta {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            color: var(--muted);
+        }
+
+        .oss-repo {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .pr-link {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--fg);
+            display: inline-block;
+        }
+
+        .pr-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 4rem 1.5rem;
+            }
+            hr {
+                margin: 3rem 0;
+            }
+            .item-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.1rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="header-top">
+                <h1>Om Yewale</h1>
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="lucide-moon" style="width:14px; height:14px;"></i>
+                    <i data-lucide="sun" class="lucide-sun" style="width:14px; height:14px;"></i>
+                </button>
+            </div>
+            <ul class="bio-list">
+                <li>Software Engineer specialized in <strong>Java</strong> and <strong>TypeScript</strong></li>
+                <li>Actively contributing to open-source</li>
+                <li>Deep interest in <strong>machine learning</strong> and <strong>backend infrastructure</strong></li>
+            </ul>
+            
+            <nav>
+                <a href="mailto:yewaleom394@gmail.com">Email</a>
+                <a href="https://github.com/OMEE-Y" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </header>
+
+        <hr>
+
+        <section id="projects">
+            <h2>Projects I made</h2>
+            <div class="list">
+
+                <div class="item">
+                    <div class="item-row">
+                        <a href="https://github.com/OMEE-Y/setup-dodo" target="_blank" rel="noopener" class="item-title">setup-dodo</a>
+                    </div>
+                    <p class="item-desc">An interactive, zero-dependency CLI tool that instantly scaffolds Dodo Payments integrations into existing Next.js (App Router), Express, or Better-Auth codebases.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-row">
+                        <a href="https://github.com/OMEE-Y/wallhavencli" target="_blank" rel="noopener" class="item-title">wallhavencli</a>
+                    </div>
+                    <p class="item-desc">A lightweight, concurrent Java 21 command-line tool that scrapes and downloads high-resolution wallpapers from Wallhaven.cc using Virtual Threads for non-blocking execution.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-row">
+                        <a href="https://github.com/OMEE-Y/secondbrain-link-vault" target="_blank" rel="noopener" class="item-title">secondbrain-link-vault</a>
+                    </div>
+                    <p class="item-desc">A link-storing/bookmarking platform built with the MERN stack (TypeScript).</p>
+                </div>
+
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contributions">
+            <h2>Open Source Contributions</h2>
+            <div class="list">
+
+                <div class="item">
+                    <div class="oss-repo">dodopayments / dodopayments-cli</div>
+                    <div class="item-row">
+                        <a href="https://github.com/dodopayments/dodopayments-cli/pull/62" target="_blank" rel="noopener" class="pr-link">
+                            feat: add dodo init scaffolding command (#62)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="oss-repo">Nano-Collective / nanocoder</div>
+                    <div class="item-row">
+                        <a href="https://github.com/Nano-Collective/nanocoder/pull/553" target="_blank" rel="noopener" class="pr-link">
+                            fix: close chokidar watcher if startup throws error (#553)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="oss-repo">dodopayments / dualmark</div>
+                    <div class="item-row">
+                        <a href="https://github.com/dodopayments/dualmark/pull/50" target="_blank" rel="noopener" class="pr-link">
+                            fx(astro): add file paths to config validation errors (#50)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr>
+
+       
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const btn = document.getElementById('theme-btn');
+        let systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        let currentTheme = localStorage.getItem('theme') || systemTheme;
+        
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+
+        btn.addEventListener('click', () => {
+            let mode = document.documentElement.getAttribute('data-theme');
+            if (mode === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
