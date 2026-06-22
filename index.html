@@ -6,7 +6,7 @@
     
     <title>Om Yewale</title>
     <meta name="description" content="Portfolio of Om Yewale, an IT Engineering student specializing in high-performance Java backends, TypeScript systems, and concurrent architectures.">
-    <meta name="keywords" content="Om Yewale, Software Engineer, Java 21, TypeScript, Virtual Threads, Next.js, Backend Engineer, Concurrent Systems">
+    <meta name="keywords" content="Om Yewale, Software Engineer, Java 21, TypeScript, Virtual Threads, Next.js, Backend Engineer, Concurrent Systems, Spring Boot, PostgreSQL">
     <meta name="author" content="Om Yewale">
     <meta property="og:title" content="Om Yewale">
     <meta property="og:description" content="Building core backends, tooling, and concurrent applications using Java and TypeScript.">
@@ -16,23 +16,25 @@
 
     <style>
         :root {
-            --bg: #000000;
-            --fg: #ffffff;
-            --muted: #666666;
-            --accent: #a78bfa; 
-            --accent-dim: rgba(167, 139, 250, 0.08);
-            --border: #222222;
+            /* Claude-inspired Dark Mode (Warm Charcoal & Vibrant Orange) */
+            --bg: #191919;
+            --fg: #f5f5f4;
+            --muted: #a1a1aa; 
+            --accent: #f97316; 
+            --accent-dim: rgba(249, 115, 22, 0.1);
+            --border: #2e2e2e;
             --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         [data-theme="light"] {
-            --bg: #ffffff;
-            --fg: #000000;
-            --muted: #888888;
-            --accent: #6d28d9;
-            --accent-dim: rgba(109, 40, 217, 0.05);
-            --border: #ececec;
+            /* Claude-inspired Light Mode (Warm Cream & Deep Rust Orange) */
+            --bg: #fbfaf7;
+            --fg: #1a1a1a;
+            --muted: #6b7280; 
+            --accent: #ea580c;
+            --accent-dim: rgba(234, 88, 12, 0.08);
+            --border: #e5e5e0;
         }
 
         * {
@@ -58,14 +60,12 @@
             margin: 0 auto;
         }
 
-        /* Divider Rule Styling */
         hr {
             border: 0;
             border-top: 1px solid var(--border);
             margin: 4rem 0;
         }
 
-        /* Header Setup */
         header {
             margin-bottom: 4rem;
         }
@@ -92,10 +92,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: color 0.2s;
         }
 
         .theme-toggle:hover {
-            color: var(--fg);
+            color: var(--accent);
         }
 
         .theme-toggle .lucide-moon { display: block; }
@@ -117,7 +118,14 @@
             color: var(--fg);
             font-weight: 500;
             background: var(--accent-dim);
-            padding: 0 2px;
+            border-bottom: 1px dashed var(--accent);
+            padding: 0 4px;
+        }
+
+        .availability {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
         }
 
         nav a {
@@ -126,14 +134,14 @@
             color: var(--muted);
             text-decoration: none;
             margin-right: 1.5rem;
+            transition: color 0.2s;
         }
 
         nav a:hover {
-            color: var(--fg);
+            color: var(--accent);
             text-decoration: underline;
         }
 
-        /* Sections */
         section {
             margin-bottom: 4rem;
         }
@@ -146,9 +154,12 @@
             color: var(--muted);
             margin-bottom: 2rem;
             font-weight: 500;
+            border-left: 2px solid var(--accent);
+            padding-left: 8px;
         }
 
         .list {
+            list-style: none;
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
@@ -171,21 +182,54 @@
             font-weight: 500;
             text-decoration: none;
             color: var(--fg);
+            transition: color 0.2s;
         }
 
         .item-title:hover {
+            color: var(--accent);
             text-decoration: underline;
         }
 
-        .item-meta {
+        .item-meta-links {
             font-family: var(--font-mono);
             font-size: 11px;
+        }
+
+        .item-meta-links a {
             color: var(--muted);
-            white-space: nowrap;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .item-meta-links a:hover {
+            color: var(--accent);
+            text-decoration: underline;
         }
 
         .item-desc {
             color: var(--muted);
+        }
+
+        .tech-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .tech-row {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tech-label {
+            color: var(--muted);
+            min-width: 90px;
+        }
+
+        .tech-values {
+            color: var(--fg);
         }
 
         .oss-repo {
@@ -200,6 +244,7 @@
             text-decoration: none;
             color: var(--fg);
             display: inline-block;
+            transition: color 0.2s;
         }
 
         .pr-link:hover {
@@ -219,7 +264,13 @@
                 align-items: flex-start;
                 gap: 0.1rem;
             }
-
+            .item-meta-links {
+                margin-top: 0.15rem;
+            }
+            .tech-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
         }
     </style>
 </head>
@@ -237,85 +288,112 @@
             </div>
             <ul class="bio-list">
                 <li>Software Engineer specialized in <strong>Java</strong> and <strong>TypeScript</strong></li>
-                <li>Actively contributing to open-source</li>
-                <li>Deep interest in <strong>machine learning</strong> and <strong>backend infrastructure</strong></li>
+                <li>Building backend systems, developer tools, and machine learning applications.</li>
             </ul>
+
+            <p class="availability">Open to internships, backend engineering roles, and freelance work.</p>
             
             <nav>
                 <a href="mailto:yewaleom394@gmail.com">Email</a>
                 <a href="https://github.com/OMEE-Y" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://linkedin.com/in/omyewalelinks" target="_blank" rel="noopener">LinkedIn</a>
             </nav>
         </header>
 
         <hr>
 
+        <section id="tech-stack">
+            <h2>Technologies</h2>
+            <div class="tech-container">
+                <div class="tech-row">
+                    <div class="tech-label">Languages</div>
+                    <div class="tech-values">JavaScript, TypeScript, Java</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">Frontend</div>
+                    <div class="tech-values">Next.js, React.js, Astro, Tailwind CSS</div>
+                </div>
+                 <div class="tech-row">
+                    <div class="tech-label">Backend</div>
+                    <div class="tech-values">Express, Spring Boot</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">Database</div>
+                    <div class="tech-values">MySQL, MongoDB, PostgreSQL</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">DevOps</div>
+                    <div class="tech-values">Git , Docker, GitHub Actions</div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
         <section id="projects">
             <h2>Projects I made</h2>
-            <div class="list">
-
-                <div class="item">
+            <ul class="list">
+                <li class="item">
                     <div class="item-row">
                         <a href="https://github.com/OMEE-Y/setup-dodo" target="_blank" rel="noopener" class="item-title">setup-dodo</a>
                     </div>
                     <p class="item-desc">An interactive, zero-dependency CLI tool that instantly scaffolds Dodo Payments integrations into existing Next.js (App Router), Express, or Better-Auth codebases.</p>
-                </div>
+                </li>
 
-                <div class="item">
+                <li class="item">
                     <div class="item-row">
                         <a href="https://github.com/OMEE-Y/wallhavencli" target="_blank" rel="noopener" class="item-title">wallhavencli</a>
                     </div>
-                    <p class="item-desc">A lightweight, concurrent Java 21 command-line tool that scrapes and downloads high-resolution wallpapers from Wallhaven.cc using Virtual Threads for non-blocking execution.</p>
-                </div>
+                    <p class="item-desc">Concurrent Java 21 CLI downloader using Virtual Threads to efficiently fetch and download large wallpaper collections with low resource usage.</p>
+                </li>
 
-                <div class="item">
+                <li class="item">
                     <div class="item-row">
                         <a href="https://github.com/OMEE-Y/secondbrain-link-vault" target="_blank" rel="noopener" class="item-title">secondbrain-link-vault</a>
+                        <div class="item-meta-links">
+                            <a href="https://secondbrain-link-vault.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+                        </div>
                     </div>
                     <p class="item-desc">A link-storing/bookmarking platform built with the MERN stack (TypeScript).</p>
-                </div>
-
-            </div>
+                </li>
+            </ul>
         </section>
 
         <hr>
 
         <section id="contributions">
             <h2>Open Source Contributions</h2>
-            <div class="list">
-
-                <div class="item">
+            <ul class="list">
+                <li class="item">
                     <div class="oss-repo">dodopayments / dodopayments-cli</div>
                     <div class="item-row">
                         <a href="https://github.com/dodopayments/dodopayments-cli/pull/62" target="_blank" rel="noopener" class="pr-link">
                             feat: add dodo init scaffolding command (#62)
                         </a>
                     </div>
-                </div>
+                </li>
 
-                <div class="item">
+                <li class="item">
                     <div class="oss-repo">Nano-Collective / nanocoder</div>
                     <div class="item-row">
                         <a href="https://github.com/Nano-Collective/nanocoder/pull/553" target="_blank" rel="noopener" class="pr-link">
                             fix: close chokidar watcher if startup throws error (#553)
                         </a>
                     </div>
-                </div>
+                </li>
 
-                <div class="item">
+                <li class="item">
                     <div class="oss-repo">dodopayments / dualmark</div>
                     <div class="item-row">
                         <a href="https://github.com/dodopayments/dualmark/pull/50" target="_blank" rel="noopener" class="pr-link">
-                            fx(astro): add file paths to config validation errors (#50)
+                            fix(astro): add file paths to config validation errors (#50)
                         </a>
                     </div>
-                </div>
-
-            </div>
+                </li>
+            </ul>
         </section>
 
         <hr>
-
-       
 
     </div>
 
